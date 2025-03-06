@@ -118,6 +118,12 @@ const main = async () => {
         })
     )
 
+    // 🔴 ESTA ES LA CLAVE: Enviar solo un status 200 sin respuesta JSON
+    adapterProvider.server.post('/webhook', (req, res) => {
+        console.log("📩 Webhook recibido:", req.body);
+        res.status(200).end(); // Solo responder con status 200 sin JSON
+    });
+
     httpServer(+PORT)
 }
 
